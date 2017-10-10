@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">HCB_CreditAssitant</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="payments_title">Способы оплаты</string>
+    <string name="payments_footer">Для уточнения текущей задолженности просим позвонить по номеру 7979 со своего мобильного телефона. \nДля погашения просроченной задолженности Банк рекомендует внести платеж, включающий сумму просроченной задолженности и сумму</string>
+    <string name="loans_title">Мои кредиты</string>
+    <string name="nav_loans">Мои кредиты</string>
+    <string name="nav_payments">Способы оплаты</string>
+    <string name="title_activity_credits">Credits</string>
+    <string name="credits_schedule"><u>График платежей</u></string>
+
+    <!--> Test <-->
+    <string-array name="member_names">
+        <item>Robert</item>
+        <item>Shanni</item>
+        <item>Rachel</item>
+        <item>Maddy</item>
+        <item>Kate</item>
+        <item>Nikhil</item>
+    </string-array>
+
+    <string-array name="statuses">
+        <item>Blogging</item>
+        <item>Available</item>
+        <item>Busy</item>
+        <item>In a meeting</item>
+        <item>At work</item>
+        <item>At gym</item>
+    </string-array>
+
+    <string-array name="contactType"></string-array>
+
+</resources>

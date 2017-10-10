@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layout_gradient_green"
+    android:orientation="vertical"
+    android:paddingTop="32dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.dasteeny.hcb_creditassitant.Activities.CreditsActivity"
+    tools:showIn="@layout/activity_credits">
+
+   <ProgressBar
+       android:id="@+id/credits_progress_bar"
+       style="?android:attr/progressBarStyleHorizontal"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:max="200"
+       android:paddingBottom="16dp"
+
+       android:progress="0"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/credits_img_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:src="@mipmap/ic_account_balance_wallet_white_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_progress_bar"/>
+
+    <TextView
+        android:id="@+id/credits_left_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:text="Осталось 27 дней"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_img_wallet" />
+
+    <TextView
+        android:id="@+id/credits_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp"
+        android:text="6,822 тг"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_left_days"/>
+
+    <TextView
+        android:id="@+id/credits_next_due_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp"
+        android:text="Рекомендуем оплатить до \n 26.12.2016"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_debt" />
+
+    <TextView
+        android:id="@+id/credits_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp"
+        android:text="@string/credits_schedule"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_next_due_date"/>
+
+    <TextView
+        android:id="@+id/credits_deal_total_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сумма полного погащения\n 7,319 тг"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_schedule"/>
+
+</android.support.constraint.ConstraintLayout>

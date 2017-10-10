@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_loans"
+            android:icon="@mipmap/ic_credit_card_black_24dp"
+            android:title="@string/nav_loans" />
+        <item
+            android:id="@+id/nav_payments"
+            android:icon="@mipmap/ic_monetization_on_black_24dp"
+            android:title="@string/nav_payments" />
+    </group>
+
+</menu>
