@@ -9,12 +9,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.dasteeny.hcb_creditassitant.ClassesProducts.Products;
 import com.dasteeny.hcb_creditassitant.Fragments.LoansFragment;
 import com.dasteeny.hcb_creditassitant.Fragments.PaymentsFragment;
+import com.dasteeny.hcb_creditassitant.HCBClient;
 import com.dasteeny.hcb_creditassitant.R;
+import com.dasteeny.hcb_creditassitant.UnsafeOkHttpClient;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Initiating drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -37,6 +50,34 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setCheckedItem(R.id.nav_loans);
         displaySelectedScreen(R.id.nav_loans);
+
+        //Establishing connection
+        OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        String API_BASE_URL = "https://ibank24.kz:9443/IBMobileLightApi_TEST/api/light/LoanMobile/";
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+        ;
+        Retrofit retrofit = builder.build();
+        HCBClient hcbClient = retrofit.create(HCBClient.class);
+
+        //Getting products list
+        Call<Products> call = hcbClient.getProducts("1747", "7051136179", "0000", "12345");
+        call.enqueue(new Callback<Products>() {
+            @Override
+            public void onResponse(Call<Products> call, Response<Products> response) {
+                Log.d("Response code", String.valueOf(response.code()));
+
+            }
+
+            @Override
+            public void onFailure(Call<Products> call, Throwable t) {
+                Log.d("TEST", String.valueOf(t.getCause()));
+
+            }
+        });
+
     }
 
     @Override

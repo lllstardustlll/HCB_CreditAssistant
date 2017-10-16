@@ -11,27 +11,19 @@
     <string name="nav_loans">Мои кредиты</string>
     <string name="nav_payments">Способы оплаты</string>
     <string name="title_activity_credits">Credits</string>
+
+    <!--Credits-->
     <string name="credits_schedule"><u>График платежей</u></string>
+    <string name="creditDebt">%1$s тг</string>
+    <string name="creditNextDateDue">Рекомендуем оплатить до %1$s</string>
+    <string name="creditDealTotalDebt">Сумма полного погащения %1$s тг</string>
+    <plurals name="creditsLeftDays">
+        <item quantity="one">Остался %1$d день</item>
+        <item quantity="few">Осталось %1$d дня</item>
+        <item quantity="many">Осталось %1$d дней</item>
+        <item quantity="other">Осталось %1$d дней</item>
+    </plurals>
 
-    <!--> Test <-->
-    <string-array name="member_names">
-        <item>Robert</item>
-        <item>Shanni</item>
-        <item>Rachel</item>
-        <item>Maddy</item>
-        <item>Kate</item>
-        <item>Nikhil</item>
-    </string-array>
-
-    <string-array name="statuses">
-        <item>Blogging</item>
-        <item>Available</item>
-        <item>Busy</item>
-        <item>In a meeting</item>
-        <item>At work</item>
-        <item>At gym</item>
-    </string-array>
-
-    <string-array name="contactType"></string-array>
+    <string-array name="contactType"/>
 
 </resources>
