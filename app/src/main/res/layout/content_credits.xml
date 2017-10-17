@@ -1,98 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_gradient_green"
-    android:orientation="vertical"
-    android:paddingTop="32dp"
+    android:paddingTop="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.dasteeny.hcb_creditassitant.Activities.CreditsActivity"
     tools:showIn="@layout/activity_credits">
 
-   <ProgressBar
-       android:id="@+id/credits_progress_bar"
-       style="?android:attr/progressBarStyleHorizontal"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:max="200"
-       android:paddingBottom="16dp"
+    <at.grabner.circleprogress.CircleProgressView
+        android:id="@+id/credits_underlay_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        CircleProgressView:cpv_barColor="#4b4b4b"
+        CircleProgressView:cpv_barWidth="25dp"
+        CircleProgressView:cpv_blockCount="60"
+        CircleProgressView:cpv_blockScale="0.2"
+        CircleProgressView:cpv_innerContourSize="0dp"
+        CircleProgressView:cpv_maxValue="200"
+        CircleProgressView:cpv_outerContourSize="0dp"
+        CircleProgressView:cpv_rimWidth="0dp"
+        CircleProgressView:cpv_startAngle="180"
+        CircleProgressView:cpv_textSize="0sp" />
 
-       android:progress="0"
-       app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintRight_toRightOf="parent" />
+    <at.grabner.circleprogress.CircleProgressView
+        android:id="@+id/credits_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        CircleProgressView:cpv_barWidth="25dp"
+        CircleProgressView:cpv_blockCount="60"
+        CircleProgressView:cpv_blockScale="0.2"
+        CircleProgressView:cpv_innerContourSize="0dp"
+        CircleProgressView:cpv_maxValue="200"
+        CircleProgressView:cpv_outerContourSize="0dp"
+        CircleProgressView:cpv_rimWidth="0dp"
+        CircleProgressView:cpv_startAngle="180"
+        CircleProgressView:cpv_textSize="0sp" />
 
     <ImageView
         android:id="@+id/credits_img_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:src="@mipmap/ic_account_balance_wallet_white_24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_progress_bar"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:paddingBottom="24dp"
+        android:src="@mipmap/ic_account_balance_wallet_white_24dp" />
 
     <TextView
         android:id="@+id/credits_left_days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:text=""
+        android:layout_below="@id/credits_img_wallet"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp"
+        android:text="Осталось N дней"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_img_wallet" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/credits_debt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="32dp"
+        android:layout_below="@id/credits_left_days"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:paddingBottom="48dp"
         android:text="@string/creditDebt"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_left_days"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/credits_next_due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/credits_debt"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:paddingBottom="32dp"
         android:text="@string/creditNextDateDue"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_debt" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/credits_schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/credits_next_due_date"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:paddingBottom="32dp"
         android:text="@string/credits_schedule"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_next_due_date"/>
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/credits_deal_total_debt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/credits_schedule"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:text="@string/creditDealTotalDebt"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits_schedule"/>
+        android:textColor="@color/colorAccent" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

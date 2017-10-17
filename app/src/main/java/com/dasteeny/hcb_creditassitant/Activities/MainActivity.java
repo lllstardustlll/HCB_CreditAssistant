@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.dasteeny.hcb_creditassitant.ClassesProducts.Products;
 import com.dasteeny.hcb_creditassitant.Fragments.LoansFragment;
@@ -99,19 +98,22 @@ public class MainActivity extends AppCompatActivity
 
     private void displaySelectedScreen(int id){
         Fragment fragment = null;
+        String fragmentTag = "";
 
         switch (id){
             case R.id.nav_loans:
                 fragment = new LoansFragment();
+                fragmentTag = "Loans";
                 break;
             case R.id.nav_payments:
                 fragment = new PaymentsFragment();
+                fragmentTag = "Payments";
                 break;
         }
 
-        if (fragment != null){
+        if (fragment != null ){
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.replace(R.id.content_main, fragment, fragmentTag);
             fragmentTransaction.commit();
         }
 

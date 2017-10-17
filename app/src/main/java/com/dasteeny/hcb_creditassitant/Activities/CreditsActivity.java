@@ -2,6 +2,10 @@ package com.dasteeny.hcb_creditassitant.Activities;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,12 +15,11 @@ import android.widget.TextView;
 
 import com.dasteeny.hcb_creditassitant.R;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+
+import at.grabner.circleprogress.CircleProgressView;
 
 public class CreditsActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class CreditsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Getting data from LoansFragment
+        //TODO: Manage debt formatting
         Intent prevIntent = getIntent();
         String title = prevIntent.getStringExtra("title");
         String debt = prevIntent.getStringExtra("debt");//.replaceAll("\\s+", "");
@@ -43,13 +47,15 @@ public class CreditsActivity extends AppCompatActivity {
         TextView creditsDealTotalDebt = (TextView) findViewById(R.id.credits_deal_total_debt);
 
         //Calculating amount of left days
+        long difference = 0;
+        int leftDays = 0;
         try{
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
             Date dateDueDate = dateFormat.parse(dateDue);
             Date today = Calendar.getInstance().getTime();
 
-            long difference = Math.abs(today.getTime() - dateDueDate.getTime());
-            int leftDays = (int) (difference / (24 * 60 * 60 * 1000) + 1);
+            difference = Math.abs(today.getTime() - dateDueDate.getTime());
+            leftDays = (int) (difference / (24 * 60 * 60 * 1000) + 1);
             creditsLeftDays.setText(getResources().getQuantityString(R.plurals.creditsLeftDays, leftDays, leftDays));
         }catch (Exception e){
             Log.e("DIDN'T WORK", "exception " + e);
@@ -60,8 +66,16 @@ public class CreditsActivity extends AppCompatActivity {
         creditsDealTotalDebt.setText(String.format(getResources().getString(R.string.creditDealTotalDebt), debt));
 
         //Setting ProgressBar
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.credits_progress_bar);
-        progressBar.setProgress(100);
+        CircleProgressView mCircleViewUnderlay = (CircleProgressView) findViewById(R.id.credits_underlay_progress_bar);
+        mCircleViewUnderlay.setValue(100);
+        CircleProgressView mCircleView = (CircleProgressView) findViewById(R.id.credits_progress_bar);
+        if (leftDays > 30) {
+            mCircleView.setValue(100);
+        }else {
+            mCircleView.setValue((float) leftDays / 30 * 100);
+        }
+
     }
+
 
 }
