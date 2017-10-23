@@ -1,6 +1,8 @@
 package com.dasteeny.hcb_creditassitant.ProductsListView;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +12,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dasteeny.hcb_creditassitant.Activities.CreditsActivity;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.ClientProduct;
 import com.dasteeny.hcb_creditassitant.R;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by User on 10/10/2017.
  */
 
-public class CustomAdapter extends ArrayAdapter<ListItem> implements View.OnClickListener {
+public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.OnClickListener {
 
-    private ArrayList<ListItem> listItem;
-    Context mContext;
+    private List<ClientProduct> listItem;
+    private Context mContext;
 
     @Override
     public void onClick(View view) {
-
     }
 
     private static class ViewHolder{
@@ -34,7 +39,7 @@ public class CustomAdapter extends ArrayAdapter<ListItem> implements View.OnClic
         ImageView imgType;
     }
 
-    public CustomAdapter(ArrayList<ListItem> item, Context context){
+    public CustomAdapter(List<ClientProduct> item, Context context){
         super(context, R.layout.list_item, item);
         this.listItem = item;
         this.mContext = context;
@@ -44,7 +49,8 @@ public class CustomAdapter extends ArrayAdapter<ListItem> implements View.OnClic
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        ListItem listItem = getItem(position);
+
+        ClientProduct listItem = getItem(position);
         ViewHolder viewHolder;
 
         final View result;
@@ -69,22 +75,37 @@ public class CustomAdapter extends ArrayAdapter<ListItem> implements View.OnClic
         result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.txtProdName.setText(listItem.getProdName());
-        viewHolder.txtDetails.setText(listItem.getDetails());
-        switch (listItem.getProdName()){
-            case "Кредит на товар":
-                viewHolder.imgType.setImageResource(R.mipmap.goods);
-                break;
-            case "Кредит наличными":
+        String itemTitleType = listItem.getProductType();
+        int itemYear = listItem.getCreditOpenDate().getYear();
+        int itemMonth = listItem.getCreditOpenDate().getMonth();
+        int itemDay = listItem.getCreditOpenDate().getDay();
+        String itemOpenDate = createDate(itemDay, itemMonth, itemYear);
+
+        switch (itemTitleType){
+            case "SS":
+                viewHolder.txtProdName.setText(R.string.loansCashType);
                 viewHolder.imgType.setImageResource(R.mipmap.cash);
+                //viewHolder.imgType.setImageResource(R.mipmap.goods);
                 break;
-            case "Карточка с лимитом":
+            case "RD":
+                viewHolder.txtProdName.setText(R.string.loansRDType);
                 viewHolder.imgType.setImageResource(R.mipmap.rd);
                 break;
         }
+        viewHolder.txtDetails.setText(String.format(convertView.getResources().getString(R.string.loansSubHeader),
+                listItem.getCreditAmount(), listItem.getCurrency(), itemOpenDate));
 
         return convertView;
 
+    }
+
+    private String createDate(int itemDay, int itemMonth, int itemYear) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, itemYear);
+        cal.set(Calendar.MONTH, itemMonth);
+        cal.set(Calendar.DAY_OF_MONTH, itemDay);
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        return format1.format(cal.getTime());
     }
 
 }

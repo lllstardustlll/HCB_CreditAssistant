@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HCB_CreditAssitant</string>
+    <string name="app_name">HCB CreditAssistant</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,17 +12,24 @@
     <string name="nav_payments">Способы оплаты</string>
     <string name="title_activity_credits">Credits</string>
 
-    <!--Credits-->
+    <!--LoansSTART-->
+    <string name="loansSubHeader">%1$d %2$s от %3$s</string>
+    <string name="loansCashType">Кредит наличными</string>
+    <string name="loansRDType">Карточка с лимитом</string>
+    <!--LoansEND-->
+
+    <!--CreditsSTART-->
     <string name="credits_schedule"><u>График платежей</u></string>
-    <string name="creditDebt">%1$s тг</string>
-    <string name="creditNextDateDue">Рекомендуем оплатить до %1$s</string>
-    <string name="creditDealTotalDebt">Сумма полного погащения %1$s тг</string>
+    <string name="creditsDebt">%1$d тг</string>
+    <string name="creditsNextDateDue">Рекомендуем оплатить до %1$s</string>
+    <string name="creditsDealTotalDebt">Сумма полного погашения %1$d %2$s</string>
     <plurals name="creditsLeftDays">
         <item quantity="one">Остался %1$d день</item>
         <item quantity="few">Осталось %1$d дня</item>
         <item quantity="many">Осталось %1$d дней</item>
         <item quantity="other">Осталось %1$d дней</item>
     </plurals>
+    <!--CreditsEND-->
 
     <string-array name="contactType"/>
 

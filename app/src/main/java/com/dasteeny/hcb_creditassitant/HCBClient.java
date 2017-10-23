@@ -1,7 +1,7 @@
 package com.dasteeny.hcb_creditassitant;
 
-import com.dasteeny.hcb_creditassitant.ClassesProducts.Products;
-import com.dasteeny.hcb_creditassitant.ClassesSMS.SMS;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.GetProductsResponse;
+import com.dasteeny.hcb_creditassitant.JsonObjects.SendSMSCode.SMS.SMS;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -24,5 +24,5 @@ public interface HCBClient {
 
     @FormUrlEncoded
     @POST("getProducts")
-    Call<Products> getProducts(@Field("idRequest") String idRequest, @Field("phoneNumber") String phoneNumber, @Field("deviceID") String deviceID, @Field("smsCode") String smsCode);
+    Call<GetProductsResponse> getProducts(@Field("idRequest") String idRequest, @Field("phoneNumber") String phoneNumber, @Field("deviceID") String deviceID, @Field("smsCode") String smsCode);
 }

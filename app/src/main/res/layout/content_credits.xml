@@ -74,7 +74,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:paddingBottom="48dp"
-        android:text="@string/creditDebt"
+        android:text="@string/creditsDebt"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textColor="@color/colorAccent"
         android:textStyle="bold" />
@@ -87,7 +87,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:paddingBottom="32dp"
-        android:text="@string/creditNextDateDue"
+        android:text="@string/creditsNextDateDue"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccent" />
@@ -111,7 +111,7 @@
         android:layout_below="@id/credits_schedule"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:text="@string/creditDealTotalDebt"
+        android:text="@string/creditsDealTotalDebt"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorAccent" />
