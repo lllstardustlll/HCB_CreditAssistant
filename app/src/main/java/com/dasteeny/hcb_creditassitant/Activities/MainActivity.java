@@ -57,11 +57,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void displaySelectedScreen(int id){
+    private void displaySelectedScreen(int id) {
         Fragment fragment = null;
         String fragmentTag = "";
 
-        switch (id){
+        switch (id) {
             case R.id.nav_loans:
                 fragment = new LoansFragment();
                 fragmentTag = "Loans";
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        if (fragment != null ){
+        if (fragment != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content_main, fragment, fragmentTag);
             fragmentTransaction.commit();

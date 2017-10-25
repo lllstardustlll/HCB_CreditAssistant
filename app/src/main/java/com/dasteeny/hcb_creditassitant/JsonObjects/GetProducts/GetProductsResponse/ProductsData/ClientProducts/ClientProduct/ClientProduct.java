@@ -1,13 +1,15 @@
-package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct;
+package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct;
 
 /**
  * Created by User on 10/18/2017.
  */
 
-import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.Dates.CreditOpenDate;
-import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.Dates.DueDate;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct.Dates.CreditOpenDate;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct.Dates.DueDate;
 
-public class ClientProduct{
+import java.io.Serializable;
+
+public class ClientProduct implements Serializable{
 
     private String contractNumber;
     private Integer dueAmount;

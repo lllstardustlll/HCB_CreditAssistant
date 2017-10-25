@@ -2,7 +2,6 @@ package com.dasteeny.hcb_creditassitant.ProductsListView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dasteeny.hcb_creditassitant.Activities.CreditsActivity;
-import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.ClientProduct;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct.ClientProduct;
 import com.dasteeny.hcb_creditassitant.R;
 
 import java.text.SimpleDateFormat;
@@ -33,13 +32,13 @@ public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.O
     public void onClick(View view) {
     }
 
-    private static class ViewHolder{
+    private static class ViewHolder {
         TextView txtProdName;
         TextView txtDetails;
         ImageView imgType;
     }
 
-    public CustomAdapter(List<ClientProduct> item, Context context){
+    public CustomAdapter(List<ClientProduct> item, Context context) {
         super(context, R.layout.list_item, item);
         this.listItem = item;
         this.mContext = context;
@@ -48,14 +47,14 @@ public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.O
     private int lastPosition = -1;
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ClientProduct listItem = getItem(position);
         ViewHolder viewHolder;
 
         final View result;
 
-        if (convertView == null){
+        if (convertView == null) {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -66,7 +65,7 @@ public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.O
 
             result = convertView;
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
@@ -81,7 +80,7 @@ public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.O
         int itemDay = listItem.getCreditOpenDate().getDay();
         String itemOpenDate = createDate(itemDay, itemMonth, itemYear);
 
-        switch (itemTitleType){
+        switch (itemTitleType) {
             case "SS":
                 viewHolder.txtProdName.setText(R.string.loansCashType);
                 viewHolder.imgType.setImageResource(R.mipmap.cash);
@@ -94,6 +93,17 @@ public class CustomAdapter extends ArrayAdapter<ClientProduct> implements View.O
         }
         viewHolder.txtDetails.setText(String.format(convertView.getResources().getString(R.string.loansSubHeader),
                 listItem.getCreditAmount(), listItem.getCurrency(), itemOpenDate));
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClientProduct listItem = getItem(position);
+
+                Intent intent = new Intent(mContext.getApplicationContext(), CreditsActivity.class);
+                intent.putExtra("product", listItem);
+                mContext.startActivity(intent);
+            }
+        });
 
         return convertView;
 

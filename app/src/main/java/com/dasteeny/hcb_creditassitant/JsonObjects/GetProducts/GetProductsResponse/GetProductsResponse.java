@@ -1,11 +1,12 @@
-package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse;
+package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse;
 
-import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ProductsData;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ProductsData;
 
 public class GetProductsResponse {
 
     private String status;
     private ProductsData data;
+    private String message;
 
     public String getStatus() {
         return status;
@@ -23,4 +24,11 @@ public class GetProductsResponse {
         this.data = data;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

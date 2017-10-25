@@ -1,4 +1,4 @@
-package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts;
+package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts;
 
 /**
  * Created by User on 10/18/2017.
@@ -6,7 +6,7 @@ package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsRespo
 
 import java.util.List;
 
-import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.ClientProduct;
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct.ClientProduct;
 
 public class ClientProducts {
 

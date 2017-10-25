@@ -1,9 +1,11 @@
-package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse.ProductsData.ClinetProducts.ClinetProduct.Dates;
+package com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.ProductsData.ClientProducts.ClientProduct.Dates;
+
+import java.io.Serializable;
 
 /**
  * Created by User on 10/18/2017.
  */
-public class CreditOpenDate {
+public class CreditOpenDate implements Serializable{
 
     private Integer year;
     private Integer month;
