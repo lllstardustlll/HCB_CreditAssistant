@@ -18,8 +18,11 @@ import com.dasteeny.hcb_creditassitant.Utils.Retriever;
 
 public class LoansFragment extends Fragment {
 
+    public Retriever retriever;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.i("Frag", "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -27,14 +30,24 @@ public class LoansFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        Log.i("Frag", "onCreateView");
         View view = inflater.inflate(R.layout.loans, container, false);
 
-        Retriever retriever = new Retriever(view, getContext());
-        retriever.retrieve("0", "7472503904", "0000", "12345");
+        retriever = new Retriever(view, getContext());
+        retriever.getProducts("0", "7472503904", "0000", "12345");
 
-        Log.d("TEST", "FINISHED");
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i("Frag", "onStart");
+        retriever.getProductsFromFile();
+    }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }

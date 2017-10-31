@@ -36,7 +36,6 @@ public class CreditsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Getting data from LoansFragment
-        //TODO: Manage debt formatting
         Intent prevIntent = getIntent();
         ClientProduct clientProduct = null;
         Bundle extras = prevIntent.getExtras();
@@ -57,36 +56,45 @@ public class CreditsActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.loansCashType);
 
             //Calculating amount of left days
-            long difference;
-            int leftDays;
+            Date dueDate = null;
+            Date today = null;
+            long difference = 0;
+            int leftDays = 0;
 
             DueDate dd = clientProduct.getDueDate();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-            Date dueDate = null;
-            try {
-                dueDate = dateFormat.parse(Integer.toString(dd.getDay()) + "." + Integer.toString(dd.getMonth()) + "." + Integer.toString(dd.getYear()));
-            } catch (Exception e) {
-                Log.e("DATE ERROR", e.toString());
-            }
-
-            Date today = Calendar.getInstance().getTime();
-            difference = Math.abs(today.getTime() - dueDate.getTime());
-            leftDays = (int) (difference / (24 * 60 * 60 * 1000) + 1);
-            creditsLeftDays.setText(getResources().getQuantityString(R.plurals.creditsLeftDays, leftDays, leftDays));
-            //Setting TextViews
-            creditsDebt.setText(String.format(getResources().getString(R.string.creditsDebt), clientProduct.getDueAmount(), clientProduct.getCurrency()));
-            creditsNextDateDue.setText(String.format(getResources().getString(R.string.creditsNextDateDue), dateFormat.format(dueDate)));
-            creditsDealTotalDebt.setText(String.format(getResources().getString(R.string.creditsDealTotalDebt), clientProduct.getCurrentCreditAmount(), clientProduct.getCurrency()));
-
             //Setting ProgressBar
             CircleProgressView mCircleViewUnderlay = (CircleProgressView) findViewById(R.id.credits_underlay_progress_bar);
             mCircleViewUnderlay.setValue(100);
             CircleProgressView mCircleView = (CircleProgressView) findViewById(R.id.credits_progress_bar);
-            if (leftDays > 30) {
-                mCircleView.setValue(100);
-            } else {
-                mCircleView.setValue((float) leftDays / 30 * 100);
+
+            try {
+                dueDate = dateFormat.parse(Integer.toString(dd.getDay()) + "." + Integer.toString(dd.getMonth()) + "." + Integer.toString(dd.getYear()));
+                today = Calendar.getInstance().getTime();
+                difference = dueDate.getTime() - today.getTime();
+
+                if (today.getTime() <= dueDate.getTime()) {
+                    leftDays = (int) (difference / (24 * 60 * 60 * 1000) + 1);
+                    creditsLeftDays.setText(getResources().getQuantityString(R.plurals.creditsLeftDays, leftDays, leftDays));
+                    if (leftDays > 30) {
+                        mCircleView.setValue(100);
+                    } else {
+                        mCircleView.setValue((float) leftDays / 30 * 100);
+                    }
+
+                } else {
+                    mCircleView.setValue(0);
+                    creditsLeftDays.setText(R.string.creditsPastDueDays);
+                }
+
+            } catch (Exception e) {
+                Log.e("DATE ERROR", e.toString());
             }
+
+            //Setting TextViews
+            creditsDebt.setText(String.format(getResources().getString(R.string.creditsDebt), clientProduct.getDueAmount(), clientProduct.getCurrency()));
+            creditsNextDateDue.setText(String.format(getResources().getString(R.string.creditsNextDateDue), dateFormat.format(dueDate)));
+            creditsDealTotalDebt.setText(String.format(getResources().getString(R.string.creditsDealTotalDebt), clientProduct.getCurrentCreditAmount(), clientProduct.getCurrency()));
 
         } else if (clientProduct.getProductType().equals("RD")) {
 

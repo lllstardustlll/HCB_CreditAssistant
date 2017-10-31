@@ -1,5 +1,6 @@
 package com.dasteeny.hcb_creditassitant.Utils;
 
+import com.dasteeny.hcb_creditassitant.JsonObjects.GetOfferRequest.GetOfferRequestResponse.GetOfferRequestResponse;
 import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse;
 import com.dasteeny.hcb_creditassitant.JsonObjects.SendSMSCode.SMS.SMS;
 
@@ -25,4 +26,8 @@ public interface HCBClient {
     @FormUrlEncoded
     @POST("getProducts")
     Call<GetProductsResponse> getProducts(@Field("idRequest") String idRequest, @Field("phoneNumber") String phoneNumber, @Field("deviceID") String deviceID, @Field("smsCode") String smsCode);
+
+    @FormUrlEncoded
+    @POST("getSasOffer")
+    Call<GetOfferRequestResponse> getOfferRequest(@Field("idRequest") String idRequest, @Field("phoneNumber") String phoneNumber, @Field("deviceID") String deviceID, @Field("smsCode") String smsCode);
 }

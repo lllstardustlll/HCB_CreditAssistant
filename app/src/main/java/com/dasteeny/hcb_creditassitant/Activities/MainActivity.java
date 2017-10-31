@@ -15,26 +15,40 @@ import android.view.MenuItem;
 import com.dasteeny.hcb_creditassitant.Fragments.LoansFragment;
 import com.dasteeny.hcb_creditassitant.Fragments.PaymentsFragment;
 import com.dasteeny.hcb_creditassitant.R;
+import com.dasteeny.hcb_creditassitant.Utils.Retriever;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String ID_REQUEST = "338885";
+    private static final String PHONE_NUMBER = "7051136179";
+    private static final String DEVICE_ID = "0000";
+    private static final String SMS_CODE = "12345";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //Initiating drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                                                                 drawer,
+                                                                 toolbar,
+                                                                 R.string.navigation_drawer_open,
+                                                                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Retriever retriever = new Retriever(getWindow().getDecorView().getRootView(), this);
+        //String idRequest = retriever.sendSms(PHONE_NUMBER, DEVICE_ID);
+        retriever.getOfferRequest(ID_REQUEST, PHONE_NUMBER, DEVICE_ID, SMS_CODE);
 
         navigationView.setCheckedItem(R.id.nav_loans);
         displaySelectedScreen(R.id.nav_loans);
@@ -93,5 +107,4 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
-
 }

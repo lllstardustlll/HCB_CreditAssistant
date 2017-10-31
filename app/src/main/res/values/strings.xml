@@ -10,6 +10,7 @@
     <string name="loans_title">Мои кредиты</string>
     <string name="nav_loans">Мои кредиты</string>
     <string name="nav_payments">Способы оплаты</string>
+    <string name="nav_offers">Специальные \n предложения</string>
     <string name="title_activity_credits">Credits</string>
 
     <!--LoansSTART-->
@@ -29,6 +30,7 @@
         <item quantity="many">Осталось %1$d дней</item>
         <item quantity="other">Осталось %1$d дней</item>
     </plurals>
+    <string name="creditsPastDueDays">Вы вышли на просрочку</string>
     <!--CreditsEND-->
 
     <string-array name="contactType"/>

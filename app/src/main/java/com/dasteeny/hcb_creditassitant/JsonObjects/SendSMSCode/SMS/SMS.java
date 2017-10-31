@@ -10,6 +10,7 @@ public class SMS {
 
     private String status;
     private SMSData data;
+    private String message;
 
     public SMS() {
     }
@@ -20,5 +21,9 @@ public class SMS {
 
     public SMSData getData() {
         return data;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

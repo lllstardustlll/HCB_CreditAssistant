@@ -17,4 +17,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="NavigationMenuItemTextAppearance">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="NavigationMenuSpecOffsStyle" >
+        <item name="android:textColor">#ff0000</item>
+    </style>
+
 </resources>
