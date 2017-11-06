@@ -15,8 +15,7 @@
             android:id="@+id/nav_spec_offers"
             android:icon="@mipmap/ic_local_offer_black_24dp"
             android:title="@string/nav_offers"
-            app:actionViewClass = "android.widget.TextView"
-            android:enabled="false"/>
+            app:actionViewClass = "android.widget.TextView" />
     </group>
 
 </menu>

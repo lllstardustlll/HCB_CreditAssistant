@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/layout_gradient_red">
+
+    <TextView
+        android:id="@+id/offerTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_rounded_corners"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/offersTitle"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/offerPicImageView"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/offer_pic" />
+
+    <TextView
+        android:id="@+id/shorMsgTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/fullMsgTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:paddingBottom="24dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/callOfferButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/layout_rounded_all"
+        android:text="@string/offersCallBtn"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/orderCallOfferButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/layout_rounded_all"
+        android:text="@string/offersOrderBtn"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/leaveRequestOfferButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/layout_rounded_all"
+        android:text="@string/offersRequestBtn"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"/>
+
+
+</LinearLayout>

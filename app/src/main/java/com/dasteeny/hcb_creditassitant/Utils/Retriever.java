@@ -1,8 +1,6 @@
 package com.dasteeny.hcb_creditassitant.Utils;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -10,17 +8,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dasteeny.hcb_creditassitant.Activities.MainActivity;
 import com.dasteeny.hcb_creditassitant.JsonObjects.GetOfferRequest.GetOfferRequestResponse.GetOfferRequestResponse;
 import com.dasteeny.hcb_creditassitant.JsonObjects.GetOfferRequest.GetOfferRequestResponse.OfferRequestData.Offer.Offer;
 import com.dasteeny.hcb_creditassitant.JsonObjects.GetProducts.GetProductsResponse.GetProductsResponse;
@@ -63,42 +67,6 @@ public class Retriever {
     public Retriever(View view, Context context) {
         this.view = view;
         this.context = context;
-    }
-
-    private static boolean isNetworkAvailable(Context context) {
-        /*if (context == null) {
-            return false;
-        }*/
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
-    public void getProductsFromFile() {
-
-        try {
-            Gson gson = new Gson();
-            FileInputStream fis = context.openFileInput(FILENAME);
-            InputStreamReader inputStreamReader = new InputStreamReader(fis);
-            char[] inputBuffer = new char[256];
-            String json = "";
-            int charRead;
-
-            while ((charRead = inputStreamReader.read(inputBuffer)) > 0) {
-                json += String.copyValueOf(inputBuffer, 0, charRead);
-            }
-            inputStreamReader.close();
-
-            clientProducts = gson.fromJson(json, ClientProducts.class).getClientProduct();
-            //Setting ListView CustomAdapter
-            view.findViewById(R.id.loansProgressBar).setVisibility(View.INVISIBLE);
-            CustomAdapter customAdapter = new CustomAdapter(clientProducts, context);
-            ListView mLoansListView = (ListView) view.findViewById(R.id.loans_list_view);
-            mLoansListView.setAdapter(customAdapter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public String sendSms(String... params) {
@@ -145,13 +113,28 @@ public class Retriever {
 
                             //Get products list
                             clientProducts = response.body().getData().getClientProducts().getClientProduct();
+                           /* clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
                             clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));
+                            clientProducts.add(new ClientProduct("123456789", 24000, "CEL", 0.0, "USD", 240000, new CreditOpenDate(2017, 3, 24, 360, 0, 0, 0), "SS", 0, null, new DueDate(2017, 10, 26, 360, 0, 0, 0), 240000));*/
 
                             //Save ClientProducts object into SharedPreferences
                             try {
                                 FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
                                 String json = gson.toJson(response.body().getData().getClientProducts());
                                 fos.write(json.getBytes());
+                                fos.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -159,8 +142,15 @@ public class Retriever {
                             //Setting ListView CustomAdapter
                             view.findViewById(R.id.loansProgressBar).setVisibility(View.INVISIBLE);
                             CustomAdapter customAdapter = new CustomAdapter(clientProducts, context);
+                            //And adding card view as a footer of the list view
+                            LayoutInflater inflater = LayoutInflater.from(context);
+                            View footer = inflater.inflate(R.layout.card_view, null);
+
                             ListView mLoansListView = (ListView) view.findViewById(R.id.loans_list_view);
+                            mLoansListView.addFooterView(footer);
                             mLoansListView.setAdapter(customAdapter);
+                            CardView offerCardView = (CardView) view.findViewById(R.id.card_view);
+                            offerCardView.setVisibility(View.VISIBLE);
 
                         } else {
                             //If service is unavailable
@@ -197,52 +187,97 @@ public class Retriever {
                     if (response.isSuccessful()) {
 
                         if ("success".equals(response.body().getStatus())) {
-
                             offers = response.body().getData().getOffers();
-                            NavigationView navigationView = (NavigationView) view.findViewById(R.id.nav_view);
-                            Menu menuNav = navigationView.getMenu();
-                            MenuItem specOffs = menuNav.findItem(R.id.nav_spec_offers);
-                            Drawable icon = menuNav.findItem(R.id.nav_spec_offers).getIcon();
                             if (offers != null && offers.size() > 0) {
-
-                                specOffs.setEnabled(true);
-
-                                icon.mutate();
-                                icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-
-                                SpannableString ss = new SpannableString(specOffs.getTitle());
-                                ss.setSpan(new TextAppearanceSpan(context, R.style.NavigationMenuSpecOffsStyle), 0, ss.length(), 0);
-                                specOffs.setTitle(ss);
-
-                                TextView badge = (TextView) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.nav_spec_offers));
-                                badge.setGravity(Gravity.CENTER_VERTICAL);
-                                badge.setTypeface(null, Typeface.BOLD);
-                                badge.setTextColor(context.getResources().getColor(R.color.colorPrimary));
-                                badge.setText(Integer.toString(offers.size()));
-
+                                MainActivity.offersFullMsg = offers.get(0).getFullMessage();
+                                setOfferDetails(context, view);
                             }
                         } else {
-
                             Log.d("Special Offer", response.body().getMessage());
-
                         }
-
                     } else {
-
                         Log.d("Special Offers", response.errorBody().toString());
-
                     }
-
                 }
 
                 @Override
                 public void onFailure(Call<GetOfferRequestResponse> call, Throwable t) {
-
                     Log.d("Special Offers", t.toString());
-
                 }
             });
 
         }
     }
+
+    private static boolean isNetworkAvailable(Context context) {
+        /*if (context == null) {
+            return false;
+        }*/
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void getProductsFromFile() {
+
+        try {
+            Gson gson = new Gson();
+            FileInputStream fis = context.openFileInput(FILENAME);
+            InputStreamReader inputStreamReader = new InputStreamReader(fis);
+            char[] inputBuffer = new char[256];
+            String json = "";
+            int charRead;
+
+            while ((charRead = inputStreamReader.read(inputBuffer)) > 0) {
+                json += String.copyValueOf(inputBuffer, 0, charRead);
+            }
+            inputStreamReader.close();
+
+            clientProducts = gson.fromJson(json, ClientProducts.class).getClientProduct();
+            //Setting ListView CustomAdapter
+            view.findViewById(R.id.loansProgressBar).setVisibility(View.INVISIBLE);
+            CustomAdapter customAdapter = new CustomAdapter(clientProducts, context);
+            ListView mLoansListView = (ListView) view.findViewById(R.id.loans_list_view);
+            mLoansListView.setAdapter(customAdapter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void setOfferDetails(final Context context, View veiw) {
+
+        //Setting up navigation drawer menu item
+        NavigationView navigationView = (NavigationView) view.findViewById(R.id.nav_view);
+        Menu menuNav = navigationView.getMenu();
+        MenuItem specOffs = menuNav.findItem(R.id.nav_spec_offers);
+        Drawable icon = menuNav.findItem(R.id.nav_spec_offers).getIcon();
+        //Changing color of icon...
+        icon.mutate();
+        icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        //... and text
+        SpannableString ss = new SpannableString(specOffs.getTitle());
+        ss.setSpan(new TextAppearanceSpan(context, R.style.NavigationMenuSpecOffsStyle), 0, ss.length(), 0);
+        specOffs.setTitle(ss);
+        //Adding a badge (number of offers shown on the right)
+        TextView badge = (TextView) MenuItemCompat.getActionView(navigationView.getMenu().findItem(R.id.nav_spec_offers));
+        badge.setGravity(Gravity.CENTER_VERTICAL);
+        badge.setTypeface(null, Typeface.BOLD);
+        badge.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+        badge.setText(Integer.toString(offers.size()));
+        //Triple dot menu
+        final ImageView overflowCardView = (ImageView) view.findViewById(R.id.overflowCardView);
+         
+
+    }
+
+    private void showPopupMenu(View view, Context mContext) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(mContext, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.card_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new CardMenuItemClickListener(context));
+        popup.show();
+    }
+
 }

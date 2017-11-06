@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dasteeny.hcb_creditassitant.Fragments.LoansFragment;
+import com.dasteeny.hcb_creditassitant.Fragments.OffersFragment;
 import com.dasteeny.hcb_creditassitant.Fragments.PaymentsFragment;
 import com.dasteeny.hcb_creditassitant.R;
 import com.dasteeny.hcb_creditassitant.Utils.Retriever;
@@ -20,10 +21,12 @@ import com.dasteeny.hcb_creditassitant.Utils.Retriever;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String ID_REQUEST = "338885";
+    private static final String ID_REQUEST = "339179";
     private static final String PHONE_NUMBER = "7051136179";
     private static final String DEVICE_ID = "0000";
     private static final String SMS_CODE = "12345";
+
+    public static String offersFullMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +67,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
     private void displaySelectedScreen(int id) {
         Fragment fragment = null;
         String fragmentTag = "";
@@ -83,6 +79,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_payments:
                 fragment = new PaymentsFragment();
                 fragmentTag = "Payments";
+                break;
+            case R.id.nav_spec_offers:
+                fragment = new OffersFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("fullMsg", offersFullMsg);
+                fragment.setArguments(bundle);
+                fragmentTag = "Offer";
                 break;
         }
 

@@ -7,20 +7,19 @@
     <string name="action_settings">Settings</string>
     <string name="payments_title">Способы оплаты</string>
     <string name="payments_footer">Для уточнения текущей задолженности просим позвонить по номеру 7979 со своего мобильного телефона. \nДля погашения просроченной задолженности Банк рекомендует внести платеж, включающий сумму просроченной задолженности и сумму</string>
-    <string name="loans_title">Мои кредиты</string>
     <string name="nav_loans">Мои кредиты</string>
     <string name="nav_payments">Способы оплаты</string>
     <string name="nav_offers">Специальные \n предложения</string>
-    <string name="title_activity_credits">Credits</string>
 
-    <!--LoansSTART-->
+    <!--Loans-->
+    <string name="loansTitle">Мои кредиты</string>
     <string name="loansSubHeader">%1$d %2$s от %3$s</string>
     <string name="loansCashType">Кредит наличными</string>
     <string name="loansRDType">Карточка с лимитом</string>
-    <!--LoansEND-->
 
-    <!--CreditsSTART-->
-    <string name="credits_schedule"><u>График платежей</u></string>
+    <!--Credits-->
+    <string name="creditsTitle">Credits</string>
+    <string name="creditsSchedule"><u>График платежей</u></string>
     <string name="creditsDebt">%1$d %2$s</string>
     <string name="creditsNextDateDue">Рекомендуем оплатить до %1$s</string>
     <string name="creditsDealTotalDebt">Сумма полного погашения %1$d %2$s</string>
@@ -31,8 +30,14 @@
         <item quantity="other">Осталось %1$d дней</item>
     </plurals>
     <string name="creditsPastDueDays">Вы вышли на просрочку</string>
-    <!--CreditsEND-->
 
-    <string-array name="contactType"/>
+    <!-- Offers -->
+    <string name="offersTitle">Специальное предложение</string>
+    <string name="offersWelcomeM">Уважаемый %1$s!</string>
+    <string name="offersWelcomeF">Уважаемая %1$s!</string>
+    <string name="offersCallBtn">ПОЗВОНИТЬ</string>
+    <string name="offersOrderBtn">ЗАКАЗАТЬ ЗВОНОК</string>
+    <string name="offersRequestBtn">ОСТАВИТЬ ЗАЯВКУ</string>
+
 
 </resources>

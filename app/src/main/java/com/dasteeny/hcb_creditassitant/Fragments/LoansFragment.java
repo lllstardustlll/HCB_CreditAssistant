@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.dasteeny.hcb_creditassitant.R;
 import com.dasteeny.hcb_creditassitant.Utils.Retriever;
@@ -31,7 +33,10 @@ public class LoansFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         Log.i("Frag", "onCreateView");
-        View view = inflater.inflate(R.layout.loans, container, false);
+        View view = inflater.inflate(R.layout.fragment_loans, container, false);
+
+        ProgressBar spinner = (ProgressBar) view.findViewById(R.id.loansProgressBar);
+        spinner.getIndeterminateDrawable().setColorFilter(0xFFFF0000, android.graphics.PorterDuff.Mode.MULTIPLY);
 
         retriever = new Retriever(view, getContext());
         retriever.getProducts("0", "7472503904", "0000", "12345");
@@ -39,15 +44,15 @@ public class LoansFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("Frag", "onStart");
-        retriever.getProductsFromFile();
+    /*private void fillPage(){
+
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
+    private Object getData(){
+        if (isInetEnabled){
+
+        } else {
+
+        }
+    }*/
 }
